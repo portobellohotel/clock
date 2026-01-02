@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Porto Bello Hotel | Saat & Tarih</title>
+  <title>Porto Bello Hotel | Time & Date</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -40,17 +40,21 @@
   <script>
     function update() {
       const now = new Date();
-      document.getElementById("clock").textContent =
-        now.toLocaleTimeString("tr-TR", { hour12: false });
 
+      // Time (24-hour, English)
+      document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-GB", { hour12: false });
+
+      // Date (English)
       document.getElementById("date").textContent =
-        now.toLocaleDateString("tr-TR", {
+        now.toLocaleDateString("en-GB", {
           weekday: "long",
           day: "numeric",
           month: "long",
           year: "numeric"
         });
     }
+
     update();
     setInterval(update, 1000);
   </script>
