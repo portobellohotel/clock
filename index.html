@@ -275,6 +275,13 @@ body.mode-sunny #sunFlare{ opacity: 1; }
 .content { display: inline-flex; align-items: center; gap: 15px; }
 .sep { opacity: .35; }
 
+/* ✅✅ EN PRATİK ÇÖZÜM: Marquee YOKSA satırı ortala */
+.ticker:not(.marquee) .belt{
+  display: flex;            /* inline-flex yerine */
+  width: 100%;              /* satırı doldursun */
+  justify-content: center;  /* içerik ortada dursun */
+}
+
 @keyframes pulse{ 0%{opacity:1} 50%{opacity:.45} 100%{opacity:1} }
 .active{ animation: pulse 1.1s ease-in-out infinite; color:#ffd166; font-weight:700; text-shadow:0 0 14px rgba(255,209,102,.18); }
 .activeGlow{ text-shadow:0 0 18px rgba(255,209,102,.20), 0 0 34px rgba(255,209,102,.10); }
