@@ -1,246 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Porto Bello Hotel | Time & Date</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      background: #0b1320;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
+    html, body{
+      margin:0;
+      width:100%;
+      height:100%;
+      background:#0b1320;
+      color:#ffffff;
+      font-family:Arial, Helvetica, sans-serif;
     }
 
-    body {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    body{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
     }
 
     /* LOGO */
-    .logo {
-      position: absolute;
-      top: 30px;
-      left: 30px;
-      width: 190px;
-      opacity: 0.85;
+    .logo{
+      position:absolute;
+      top:30px;
+      left:30px;
+      width:190px;
+      opacity:0.85;
       filter: drop-shadow(0 0 10px rgba(255,255,255,0.08));
     }
 
     /* CLOCK */
-    #clock {
-      font-size: 110px;
-      font-weight: 700;
-      letter-spacing: 4px;
+    #clock{
+      font-size:110px;
+      font-weight:700;
+      letter-spacing:4px;
       text-shadow:
         0 0 12px rgba(255,255,255,0.15),
         0 0 24px rgba(255,255,255,0.08);
     }
 
     /* DATE */
-    #date {
-      margin-top: 20px;
-      font-size: 42px;
-      opacity: 0.85;
-      letter-spacing: 1px;
-      font-weight: 300;
+    #date{
+      margin-top:20px;
+      font-size:42px;
+      opacity:0.85;
+      letter-spacing:1px;
+      font-weight:300;
     }
 
-    /* 2 BOTTOM BARS */
-    .ticker {
-      position: absolute;
-      left: 0;
-      right: 0;
-      padding: 16px 30px;
-      text-align: center;
-      font-size: 26px;
-      background: rgba(0,0,0,0.18);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      line-height: 1.35;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    /* TICKERS (2 BANDS) */
+    .ticker{
+      position:absolute;
+      left:0;
+      right:0;
+      padding:14px 28px;
+      text-align:center;
+      font-size:26px;
+      background:rgba(0,0,0,0.18);
+      backdrop-filter:blur(6px);
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      line-height:1.2;
     }
 
-    /* Upper one (above) */
-    #tickerTop {
-      bottom: 58px; /* üst bant */
+    #tickerTop{ bottom:72px; }
+    #tickerBottom{ bottom:0; }
+
+    .sep{ opacity:0.35; }
+
+    /* BLINK */
+    @keyframes pulse{
+      0%{ opacity:1; }
+      50%{ opacity:0.4; }
+      100%{ opacity:1; }
     }
 
-    /* Lower one (bottom-most) */
-    #tickerBottom {
-      bottom: 0;    /* alt bant */
+    .active{
+      animation:pulse 1.2s ease-in-out infinite;
+      color:#ffd166;
+      font-weight:700;
     }
 
-    /* ACTIVE – PULSE */
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.4; }
-      100% { opacity: 1; }
+    /* PAST */
+    .past{
+      opacity:0.35;
     }
 
-    .active {
-      animation: pulse 1.2s ease-in-out infinite;
-      color: #ffd166;
-      font-weight: 600;
-    }
-
-    /* PAST – DIM */
-    .past { opacity: 0.35; }
-
-    /* Small status label */
-    .status {
-      font-size: 20px;
-      margin-left: 8px;
-      opacity: 0.92;
-      font-weight: 600;
+    .tag{
+      margin-left:8px;
+      font-size:0.92em;
+      font-weight:700;
+      opacity:0.95;
     }
   </style>
 </head>
 
 <body>
-
-  <img src="logo.png" class="logo" alt="Porto Bello Hotel">
+  <img src="logo.png" class="logo" alt="Porto Bello Hotel" />
 
   <div id="clock"></div>
   <div id="date"></div>
 
-  <!-- 1. BANT (YUKARDAKİ) -->
+  <!-- 1. BAND (UPPER) -->
   <div id="tickerTop" class="ticker">
-    <span id="breakfast">Breakfast 07:00-10:00</span> |
-    <span id="lateBreakfast">Late Breakfast 10:00-10:30</span> |
-    <span id="lunch">Lunch 12:30-14:00</span> |
-    <span id="snack">Snack 14:30-15:30</span>
+    <span id="breakfast">🍳 Breakfast 07:00–10:00</span><span class="sep">|</span>
+    <span id="lateBreakfast">🥐 Late Breakfast 10:00–10:30</span><span class="sep">|</span>
+    <span id="lunch">🍽️ Lunch 12:30–14:00</span><span class="sep">|</span>
+    <span id="snack">🍪 Snack 14:30–15:30</span>
   </div>
 
-  <!-- 2. BANT (AŞAĞIDAKİ) -->
+  <!-- 2. BAND (BOTTOM) -->
   <div id="tickerBottom" class="ticker">
-    <span id="dinner">Dinner 18:30-21:00</span> |
-    <span id="show">Animation Show 21:30</span> |
-    <span id="lateSnack">Late Snack 23:00-06:00</span> |
-    <span id="lobbyBar">Lobby Bar 08:30-00:00</span>
+    <span id="dinner">🍷 Dinner 18:30–21:00</span><span class="sep">|</span>
+    <span id="show">🎉 Animation Show 21:30</span><span class="sep">|</span>
+    <span id="lateSnack">🌙 Late Snack 23:00–06:00</span><span class="sep">|</span>
+    <span id="lobbyBar">🍸 Lobby Bar 08:30–00:00</span>
   </div>
 
   <script>
-    // ---- Helpers ----
-    const BASE_TEXT = {
-      breakfast: "Breakfast 07:00-10:00",
-      lateBreakfast: "Late Breakfast 10:00-10:30",
-      lunch: "Lunch 12:30-14:00",
-      snack: "Snack 14:30-15:30",
+    // helpers
+    function hmToMinutes(h, m) { return (h * 60) + m; }
+    function timeToMinutes(date) { return date.getHours() * 60 + date.getMinutes(); }
 
-      dinner: "Dinner 18:30-21:00",
-      show: "Animation Show 21:30",
-      lateSnack: "Late Snack 23:00-06:00",
-      lobbyBar: "Lobby Bar 08:30-00:00"
-    };
-
-    function setText(id, extra = "") {
-      const el = document.getElementById(id);
-      el.innerHTML = `${BASE_TEXT[id]}${extra ? ` <span class="status">(${extra})</span>` : ""}`;
+    function setTag(el, text){
+      // remove existing tag
+      const old = el.querySelector(".tag");
+      if(old) old.remove();
+      if(text){
+        const t = document.createElement("span");
+        t.className = "tag";
+        t.textContent = `(${text})`;
+        el.appendChild(t);
+      }
     }
 
-    function hmToMinutes(h, m) { return h * 60 + m; }
+    function clearState(el){
+      el.classList.remove("active","past");
+      setTag(el, "");
+    }
 
-    // Time window checker, supports cross-midnight (e.g. 23:00–06:00)
-    function inWindow(nowMin, startMin, endMin) {
-      if (startMin <= endMin) {
+    // Schedule definitions
+    // type: "meal" => Now Open
+    // type: "show" => Live Now (only when active window matches)
+    const items = [
+      // TOP BAND
+      { id:"breakfast",     type:"meal", start:[7,0],   end:[10,0],  cross:false },
+      { id:"lateBreakfast", type:"meal", start:[10,0],  end:[10,30], cross:false },
+      { id:"lunch",         type:"meal", start:[12,30], end:[14,0],  cross:false },
+      { id:"snack",         type:"meal", start:[14,30], end:[15,30], cross:false },
+
+      // BOTTOM BAND
+      { id:"dinner",        type:"meal", start:[18,30], end:[21,0],  cross:false },
+
+      // Animation Show: "start time only" dediğin için,
+      // burada 21:20–21:40 gibi bir "canlı pencere" verdim.
+      // İstersen bunu değiştirebiliriz.
+      { id:"show",          type:"show", start:[21,20], end:[21,40], cross:false },
+
+      // Cross-midnight ones
+      { id:"lateSnack",     type:"meal", start:[23,0],  end:[6,0],   cross:true  },
+      { id:"lobbyBar",      type:"meal", start:[8,30],  end:[0,0],   cross:true  }
+    ];
+
+    function isInRange(nowMin, startMin, endMin, cross){
+      if(!cross){
         return nowMin >= startMin && nowMin <= endMin;
       }
-      // crosses midnight
-      return nowMin >= startMin || nowMin <= endMin;
+      // cross-midnight: active if after start OR before end
+      return (nowMin >= startMin) || (nowMin <= endMin);
     }
 
-    // Marks past: if end time is before "now" in normal same-day windows.
-    // For cross-midnight services (23:00–06:00, 08:30–00:00), we handle with rules below.
-    function markPastSimple(nowMin, endMin) {
+    function isPastSameDay(nowMin, endMin){
+      // same-day past logic: if now strictly after end
       return nowMin > endMin;
     }
 
-    function clearAll() {
-      Object.keys(BASE_TEXT).forEach(id => {
-        const el = document.getElementById(id);
-        el.classList.remove("active", "past");
-        setText(id);
-      });
-    }
-
-    // ---- Core update ----
-    function updateScreen() {
+    function updateScreen(){
       const now = new Date();
-      const h = now.getHours();
-      const m = now.getMinutes();
-      const nowMin = hmToMinutes(h, m);
+      const nowMin = timeToMinutes(now);
 
-      // time/date
       document.getElementById("clock").textContent =
-        now.toLocaleTimeString("en-GB", { hour12: false });
+        now.toLocaleTimeString("en-GB", { hour12:false });
 
       document.getElementById("date").textContent =
         now.toLocaleDateString("en-GB", {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
+          weekday:"long",
+          day:"numeric",
+          month:"long",
+          year:"numeric"
         });
 
-      clearAll();
+      // reset all
+      items.forEach(it => clearState(document.getElementById(it.id)));
 
-      // ---- Define schedules (minutes) ----
-      const S = {
-        breakfast:      { start: hmToMinutes(7, 0),  end: hmToMinutes(10, 0),  status: "Now Open" },
-        lateBreakfast:  { start: hmToMinutes(10, 0), end: hmToMinutes(10, 30), status: "Now Open" },
-        lunch:          { start: hmToMinutes(12, 30),end: hmToMinutes(14, 0),  status: "Now Open" },
-        snack:          { start: hmToMinutes(14, 30),end: hmToMinutes(15, 30), status: "Now Open" },
+      // apply states
+      items.forEach(it => {
+        const el = document.getElementById(it.id);
+        const startMin = hmToMinutes(it.start[0], it.start[1]);
+        const endMin   = hmToMinutes(it.end[0], it.end[1]);
 
-        dinner:         { start: hmToMinutes(18, 30),end: hmToMinutes(21, 0),  status: "Now Open" },
+        const active = isInRange(nowMin, startMin, endMin, it.cross);
 
-        // Animation Show: single time 21:30 -> we give it a window (21:20–21:40) so it can blink
-        // You can change the buffer here:
-        show:           { start: hmToMinutes(21, 20),end: hmToMinutes(21, 40), status: "Live Now" },
-
-        lateSnack:      { start: hmToMinutes(23, 0), end: hmToMinutes(6, 0),   status: "Now Open", crossMidnight: true },
-
-        // Lobby Bar 08:30–00:00 (midnight)
-        lobbyBar:       { start: hmToMinutes(8, 30), end: hmToMinutes(0, 0),   status: "Now Open", crossMidnight: true }
-      };
-
-      // ---- Apply active/past rules ----
-      Object.entries(S).forEach(([id, cfg]) => {
-        const el = document.getElementById(id);
-
-        // active
-        if (inWindow(nowMin, cfg.start, cfg.end)) {
+        if(active){
           el.classList.add("active");
-          setText(id, cfg.status);
+          setTag(el, it.type === "show" ? "Live Now" : "Now Open");
           return;
         }
 
-        // past logic
-        if (!cfg.crossMidnight) {
-          // normal window same day
-          if (markPastSimple(nowMin, cfg.end)) el.classList.add("past");
-        } else {
-          // cross-midnight windows:
-          // lateSnack 23:00–06:00: past only between 06:01 and 22:59
-          // lobbyBar 08:30–00:00: past only between 00:01 and 08:29
-          if (id === "lateSnack") {
-            const afterMorning = nowMin > hmToMinutes(6, 0);
-            const beforeLateSnackStart = nowMin < hmToMinutes(23, 0);
-            if (afterMorning && beforeLateSnackStart) el.classList.add("past");
-          }
-          if (id === "lobbyBar") {
-            const afterMidnight = nowMin > hmToMinutes(0, 0);
-            const beforeStart = nowMin < hmToMinutes(8, 30);
-            if (afterMidnight && beforeStart) el.classList.add("past");
+        // PAST RULE:
+        // - cross-midnight olanlarda past YOK (senin istediğin fix)
+        // - normal olanlarda, bitiş saati geçtiyse past
+        if(!it.cross){
+          if(isPastSameDay(nowMin, endMin)){
+            el.classList.add("past");
           }
         }
       });
@@ -249,6 +228,5 @@
     updateScreen();
     setInterval(updateScreen, 1000);
   </script>
-
 </body>
 </html>
