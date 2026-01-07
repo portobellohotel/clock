@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Porto Bello Hotel | Main Board</title>
+<title>Porto Bello Hotel | Info Board</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- ✅ Premium Script Font (Allura) -->
@@ -492,10 +492,10 @@ function updateStates(d){
 /* ---------- Greeting (4 time ranges) ---------- */
 let _lastGreeting = "";
 function greetingForHour(h){
-  if (h >= 5 && h < 12) return "Good morning";
-  if (h >= 12 && h < 18) return "Good afternoon";
-  if (h >= 18 && h < 23) return "Good evening";
-  return "Good night";
+  if (h >= 5 && h < 12) return "Good Morning";
+  if (h >= 12 && h < 18) return "Good Afternoon";
+  if (h >= 18 && h < 23) return "Good Evening";
+  return "Good Night";
 }
 function updateGreeting(d){
   const el = document.getElementById("greeting");
